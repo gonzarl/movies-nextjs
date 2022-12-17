@@ -109,3 +109,8 @@ a {
     color-scheme: dark;
   }
 }
+
+.background{
+  background: rgb(61,83,245);
+  background: radial-gradient(circle, rgba(61,83,245,1) 0%, rgba(0,0,0,1) 100%);
+}
