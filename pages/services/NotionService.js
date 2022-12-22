@@ -26,4 +26,32 @@ async function getMovies(){
     return movies;
 }
 
-module.exports = getMovies;
+async function getSeries(){
+    const dbResponse = await searchInDB()
+    var series = [];
+    dbResponse.results.forEach( row => {
+        if (row.object === 'page' && row.properties.Tipo.select && row.properties.Tipo.select.name === 'Serie'){
+            const serie = row.properties
+            series.push(serie)
+        }
+    })
+    return series;
+}
+
+async function getDocumentaries(){
+    const dbResponse = await searchInDB()
+    var docs = [];
+    dbResponse.results.forEach( row => {
+        if (row.object === 'page' && row.properties.Tipo.select && row.properties.Tipo.select.name === 'Documental'){
+            const doc = row.properties
+            docs.push(doc)
+        }
+    })
+    return docs;
+}
+
+module.exports = {
+    getMovies,
+    getSeries,
+    getDocumentaries
+};

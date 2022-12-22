@@ -2,11 +2,13 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const navigation = [
-  { name: 'Peliculas', href: '#', current: true },
-  { name: 'Series', href: '#', current: false },
-  { name: 'Documentales', href: '#', current: false },
+  { name: 'Peliculas', href: '/movies'},
+  { name: 'Series', href: '/series'},
+  { name: 'Documentales', href: '/documentaries'},
 ]
 
 function classNames(...classes) {
@@ -53,17 +55,16 @@ export default function Example() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'underline underline-offset-8' : 'hover:underline underline-offset-8',
+                          item.href === useRouter().pathname ? 'underline underline-offset-8' : 'hover:underline underline-offset-8',
                           'px-3 py-2 rounded-md text-lg font-normal text-gray-200'
                         )}
-                        aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -116,10 +117,9 @@ export default function Example() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'underline underline-offset-8' : 'hover:underline underline-offset-8',
+                    item.href === useRouter().pathname ? 'underline underline-offset-8' : 'hover:underline underline-offset-8',
                     'block px-3 py-2 rounded-md text-base font-medium text-gray-200'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>

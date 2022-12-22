@@ -1,12 +1,12 @@
 import MovieCard from "../components/MovieCard/MovieCard"
-import movieService from '../pages/services/NotionService'
+import documentarieService from '../pages/services/NotionService'
 
-function MoviePage({movies}) {
+function documentariesPage({documentaries}) {
     return (
         <div className = "flex flex-col justify-between bg-black/75">
             <div className="my-16 grid 2xl:grid-cols-5 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xl:mx-20 xl:gap-6 md:mx-10 md:gap-4">
-                {movies.map(((movie) => (
-                    <MovieCard movie={movie} key={movie.id}/>
+                {documentaries.map(((documentarie) => (
+                    <MovieCard movie={documentarie} key={documentarie.id}/>
                 )))}
             </div>  
         </div>
@@ -14,8 +14,8 @@ function MoviePage({movies}) {
 }
 
 export async function getServerSideProps(){
-    const movies = await movieService.getMovies()
-    return { props: { movies } }
+    const documentaries = await documentarieService.getDocumentaries()
+    return { props: { documentaries } }
 }
 
-export default MoviePage
+export default documentariesPage
