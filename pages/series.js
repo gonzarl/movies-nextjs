@@ -1,5 +1,5 @@
 import MovieCard from "../components/MovieCard/MovieCard"
-import serieService from '../pages/services/NotionService'
+import serieService from '../components/services/NotionService'
 
 function SeriesPage({series}) {
     return (
