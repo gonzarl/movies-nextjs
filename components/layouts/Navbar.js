@@ -16,6 +16,8 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  const router = useRouter()
+
   return (
     <Disclosure as="nav">
       {({ open }) => (
@@ -59,7 +61,7 @@ export default function Example() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.href === useRouter().pathname ? 'underline underline-offset-8' : 'hover:underline underline-offset-8',
+                          item.href === router.pathname ? 'underline underline-offset-8' : 'hover:underline underline-offset-8',
                           'px-3 py-2 rounded-md text-lg font-normal text-gray-200'
                         )}
                       >
@@ -117,7 +119,7 @@ export default function Example() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.href === useRouter().pathname ? 'underline underline-offset-8' : 'hover:underline underline-offset-8',
+                    item.href === router.pathname ? 'underline underline-offset-8' : 'hover:underline underline-offset-8',
                     'block px-3 py-2 rounded-md text-base font-medium text-gray-200'
                   )}
                 >
