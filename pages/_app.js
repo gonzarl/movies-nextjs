@@ -2,10 +2,15 @@ import '../styles/globals.css'
 import Head from 'next/head'
 import Layout from '../components/layouts/Layout'
 import { Montserrat } from '@next/font/google'
+import Router from "next/router";
+import { usePageLoading } from '../hooks/PageLoading';
+import Loading from '../components/utils/LoadingCircle'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
 export default function App({ Component, pageProps }) {
+  const { isPageLoading } = usePageLoading();
+
   return (
     <>
       <Head>
@@ -16,7 +21,11 @@ export default function App({ Component, pageProps }) {
       </Head>
       <main className={montserrat.className}>
         <Layout>
-          <Component {...pageProps} />
+          {isPageLoading ? (
+            <Loading />
+          ) : (
+            <Component {...pageProps} />
+          )}
         </Layout>
       </main>
 
